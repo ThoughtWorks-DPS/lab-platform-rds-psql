@@ -37,3 +37,4 @@ terrform.*
 *.auto.tfvars.json
 .terraform.lock.hcl
 Pipfile.lock
+credentials
