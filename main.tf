@@ -15,7 +15,7 @@ module "aurora" {
   subnets                         = data.aws_subnet_ids.private.ids
   vpc_id                          = data.aws_vpc.cluster_vpc.id
   monitoring_interval             = 60
-  instance_type                   = "db.r4.large"
+  instance_type                   = var.instance_type
   apply_immediately               = true
   skip_final_snapshot             = true
   storage_encrypted               = true
@@ -48,6 +48,6 @@ resource "aws_security_group_rule" "allow_access" {
   from_port                = 5432
   to_port                  = 5432
   protocol                 = "tcp"
-  source_security_group_id = module.eks.cluster_primary_security_group_id
+  source_security_group_id = data.aws_eks_cluster.current_cluster.cluster_primary_security_group_id
   security_group_id        = module.aurora.this_security_group_id
 }

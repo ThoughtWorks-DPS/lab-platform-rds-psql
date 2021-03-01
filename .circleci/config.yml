@@ -46,7 +46,7 @@ workflows:
                 command: |
                   secrethub inject -i tpl/terraformrc.tpl -o ~/.terraformrc
                   secrethub inject -i tpl/sandbox.auto.tfvars.json.tpl -o sandbox.auto.tfvars.json
-          # filters: *on-push-master
+          filters: *on-push-master
 
       - approve-sandbox-changes:
           type: approval
