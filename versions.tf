@@ -3,7 +3,6 @@ terraform {
   required_version = "~> 0.14"
   required_providers {
     aws        = "~> 3.30"
-    rds-aurora = "~> 2.0"
   }
 
   backend "remote" {

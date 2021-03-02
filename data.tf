@@ -3,8 +3,8 @@ data "aws_vpc" "cluster_vpc" {
     cluster = var.cluster_name
   }
 }
-data "aws_eks_cluster" "cluster" {
-  name = module.eks.cluster_id
+data "aws_eks_cluster" "cluster_primary_security_group_id" {
+  name = module.eks.cluster_primary_security_group_id
 }
 
 data "aws_eks_cluster" "current_cluster" {
