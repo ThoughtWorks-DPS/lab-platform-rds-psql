@@ -3,9 +3,6 @@ data "aws_vpc" "cluster_vpc" {
     cluster = var.cluster_name
   }
 }
-data "aws_eks_cluster" "cluster_primary_security_group_id" {
-  name = module.eks.cluster_primary_security_group_id
-}
 
 data "aws_eks_cluster" "current_cluster" {
   name = var.cluster_name
@@ -24,3 +21,6 @@ data "aws_subnet" "private_subnets" {
   id       = each.value
 }
 
+data "aws_eks_cluster" "cluster_primary_security_group_id" {
+  name = data.aws_eks_cluster.current_cluster.vpc_config[0].cluster_security_group_id
+}
