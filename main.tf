@@ -44,11 +44,11 @@ resource "aws_rds_cluster_parameter_group" "aurora_cluster_postgresql10parameter
   description = "${var.cluster_name}-aurora-postgresql10-cluster-parameter-group"
 }
 
-# resource "aws_security_group_rule" "allow_access" {
-#  type                     = "ingress"
-#  from_port                = 5432
-#  to_port                  = 5432
-#  protocol                 = "tcp"
-#  source_security_group_id = data.aws_eks_cluster.cluster_primary_security_group_id
-#  security_group_id        = module.aurora.this_security_group_id
-# }
+resource "aws_security_group_rule" "allow_access" {
+ type                     = "ingress"
+ from_port                = 5432
+ to_port                  = 5432
+ protocol                 = "tcp"
+ source_security_group_id = data.aws_eks_cluster.current_cluster.vpc_config[0].cluster_security_group_id
+ security_group_id        = module.aurora.this_security_group_id
+}
